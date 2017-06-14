@@ -1,0 +1,12 @@
+---
+
+galaxy_info:
+  author: "Ali Reza"
+  description: "Install Prometheu Node Exporter."
+  license: MIT
+  min_ansible_version: 2.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
