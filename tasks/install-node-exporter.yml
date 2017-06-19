@@ -33,11 +33,17 @@
         prometheus_node_exporter_daemon_dir: "{{ prometheus_install_path }}"
       when: prometheus_node_exporter_version | version_compare('0.12', '<')
 
+    - name: Check that the node_exporter tar exists
+      stat:
+        path: "{{ prometheus_install_path }}/node_exporter-{{ prometheus_node_exporter_version }}.{{ prometheus_platform_suffix }}"
+      register: tar_exist
+
     - name: download and untar node_exporter tarball
       unarchive:
         src: "{{ prometheus_node_exporter_tarball_url }}"
         dest: "{{ prometheus_install_path }}"
-        copy: no
+        copy: yes
+      when: tar_exist == False
 
   when: prometheus_node_exporter_version != "git"
 
@@ -85,6 +91,7 @@
 
 - name: set permissions, owner and group
   file: path={{ prometheus_node_exporter_daemon_dir }}/node_exporter owner={{ prometheus_user }} group={{ prometheus_group }} mode="go-w"
+  when: tar_exist == False
 
 - name: mkdir for data
   file:
@@ -114,3 +121,4 @@
 
 - name: set INIT status and start
   service: name=node_exporter enabled=yes state=started
+  when: tar_exist == False
