@@ -2,11 +2,11 @@
 # file: handlers/main.yml
 #
 
-- name: restart node_exporter
-  service: name=node_exporter state=restarted
+- name: restart nginxlog_exporter
+  service: name=nginxlog_exporter state=restarted
 
-- name: reload node_exporter
-  service: name=node_exporter state=reloaded
+- name: reload nginxlog_exporter
+  service: name=nginxlog_exporter state=reloaded
 
-- name: stop node_exporter
-  service: name=node_exporter state=stopped
+- name: stop nginxlog_exporter
+  service: name=nginxlog_exporter state=stopped
