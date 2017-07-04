@@ -1,3 +1,8 @@
-log_path: {{ nginx_log_path }}
-log_format: '{{ nginx_log_format }}'
-routes: [{{ nginx_endpoint_routes }}]
+log_path: {{ log_path }}
+log_format: '{{ log_format }}'
+{% if routes is defined %}
+routes:
+  {% for route in routes %}
+  - {{ route }}
+  {% endfor %}
+{% endif %}
