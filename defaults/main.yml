@@ -19,4 +19,4 @@ prometheus_gopath:        "{{ prometheus_workdir }}/gopath"
 
 # rebuild each time?  (only applied to `git` version)
 prometheus_rebuild:           false
-prometheus_nginxlog_exporter_opts: '-config-file=/etc/prometheus/nginxlog_exporter.yml'
+prometheus_nginxlog_exporter_opts: '-config.file=/etc/prometheus/nginxlog_exporter.yml'
